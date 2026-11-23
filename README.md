@@ -23,3 +23,27 @@ gi-portfolio-sql-analytics/
     ├── day1_data_mart_sample.png
     ├── day2_rating_adequacy.png
     └── day2_monthly_trends.png
+
+## 📊 Key Analytical Outputs
+
+### 1. Analytical Data Mart (Day 1)
+A policy-level view joining premium, exposure, and claim data, enriched with derived metrics and risk segmentation:
+* `EarnedPremium = BasePremium × Exposure`
+* `IncurredClaims = PaidAmount + ReservedAmount` (with `COALESCE` for non-claiming policies)
+* `LossRatio` computed per policy via `CASE WHEN`
+* Regional portfolio totals via `SUM() OVER(PARTITION BY Region)` (preserving row-level granularity)
+* Largest single claim per policy isolated via `ROW_NUMBER() OVER(... ORDER BY PaidAmount DESC)`
+
+### 2. Rating Adequacy & Profitability (Day 2)
+Segment-level analysis by **Region × Age Band**, comparing Actual vs. Expected claims to compute **Lift** (Actual ÷ Expected). Segments where the Loss Ratio exceeds the target are flagged as *Underperforming*, indicating potential under-pricing.
+
+### 3. Monthly Claim Trends (Day 2)
+Month-over-Month claim growth calculated using the `LAG()` window function, enabling early detection of emerging risk trends before they impact the annual loss ratio.
+
+---
+
+## 💡 Business Value
+
+> - **Data integrity:** Exposure-weighted premium and claim aggregation ensures metrics are actuarially sound.
+> - **Portfolio steering:** Lift analysis directly identifies which segments require pricing intervention.
+> - **Scalability:** The DuckDB + SQL approach is reproducible against production data warehouses.
