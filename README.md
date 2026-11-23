@@ -44,6 +44,6 @@ Month-over-Month claim growth calculated using the `LAG()` window function, enab
 
 ## 💡 Business Value
 
-> - **Data integrity:** Exposure-weighted premium and claim aggregation ensures metrics are actuarially sound.
-> - **Portfolio steering:** Lift analysis directly identifies which segments require pricing intervention.
-> - **Scalability:** The DuckDB + SQL approach is reproducible against production data warehouses.
+* **Data integrity:** Exposure-weighted premium and claim aggregation ensures metrics are actuarially sound (not simple row averages).
+* **Portfolio steering:** Lift analysis directly identifies which segments require pricing intervention or underwriting tightening.
+* **Scalability:** The DuckDB + SQL approach is reproducible against production data warehouses and feeds cleanly into Power BI / Tableau.
