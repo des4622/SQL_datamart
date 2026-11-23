@@ -23,6 +23,7 @@ gi-portfolio-sql-analytics/
     ├── day1_data_mart_sample.png
     ├── day2_rating_adequacy.png
     └── day2_monthly_trends.png
+```
 
 ## 📊 Key Analytical Outputs
 
